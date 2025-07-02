@@ -115,6 +115,16 @@
           </div>
 
           <!-- Contact Form -->
+          <div v-if="errors.general" class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <p class="text-red-800 font-medium">{{ errors.general }}</p>
+            </div>
+          </div>
+
           <div class="relative">
             <!-- Decorative elements -->
             <div class="absolute -top-6 -right-6 w-24 h-24 bg-blue-500 rounded-full opacity-10 blur-xl"></div>
@@ -129,15 +139,15 @@
                     <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Name</label>
                     <input type="text" id="name" v-model="form.name" :class="{ 'border-red-500': errors.name }"
                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      placeholder="Your name" required>
+                      placeholder="Your name">
                     <p v-if="errors.name" class="mt-1 text-sm text-red-600">{{ errors.name }}</p>
                   </div>
 
                   <div>
                     <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                    <input type="email" id="email" v-model="form.email" :class="{ 'border-red-500': errors.email }"
+                    <input type="text" id="email" v-model="form.email" :class="{ 'border-red-500': errors.email }"
                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      placeholder="your@email.com" required>
+                      placeholder="your@email.com">
                     <p v-if="errors.email" class="mt-1 text-sm text-red-600">{{ errors.email }}</p>
                   </div>
                 </div>
@@ -146,7 +156,7 @@
                   <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
                   <input type="text" id="subject" v-model="form.subject" :class="{ 'border-red-500': errors.subject }"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                    placeholder="Project inquiry" required>
+                    placeholder="Project inquiry">
                   <p v-if="errors.subject" class="mt-1 text-sm text-red-600">{{ errors.subject }}</p>
                 </div>
 
@@ -154,17 +164,10 @@
                   <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Message</label>
                   <textarea id="message" v-model="form.message" :class="{ 'border-red-500': errors.message }" rows="5"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
-                    placeholder="Tell me about your project..." required></textarea>
+                    placeholder="Tell me about your project..."></textarea>
                   <p v-if="errors.message" class="mt-1 text-sm text-red-600">{{ errors.message }}</p>
                 </div>
-
-                <div class="flex items-center">
-                  <input type="checkbox" id="privacy" v-model="form.privacy"
-                    class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" required>
-                  <label for="privacy" class="ml-2 text-sm text-gray-600">
-                    I agree to the <a href="#" class="text-blue-600 hover:underline">privacy policy</a>
-                  </label>
-                </div>
+                <input type="text" v-model="form.honeypot" style="display:none" autocomplete="off">
 
                 <button type="submit" :disabled="isSubmitting"
                   class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
@@ -209,7 +212,6 @@ export default {
         email: '',
         subject: '',
         message: '',
-        privacy: false
       },
       errors: {},
       isSubmitting: false,
@@ -249,6 +251,9 @@ export default {
     },
 
     async submitForm() {
+      // Clear previous errors
+      this.errors = {}
+
       if (!this.validateForm()) {
         return
       }
@@ -256,16 +261,14 @@ export default {
       this.isSubmitting = true
 
       try {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 2000))
+        const response = await window.axios.post('/api/contact', this.form)
 
-        // Reset form
+        // Reset form on success
         this.form = {
           name: '',
           email: '',
           subject: '',
           message: '',
-          privacy: false
         }
 
         this.showSuccess = true
@@ -275,6 +278,16 @@ export default {
 
       } catch (error) {
         console.error('Error sending message:', error)
+
+        // Handle validation errors
+        if (error.response && error.response.status === 422) {
+          this.errors = error.response.data.errors || {}
+        } else {
+          // Handle other errors
+          this.errors = {
+            general: 'Sorry, there was an error sending your message. Please try again later.'
+          }
+        }
       } finally {
         this.isSubmitting = false
       }
