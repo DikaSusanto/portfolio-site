@@ -1,19 +1,19 @@
 <template>
-  <section id="portfolio" class="py-20 bg-gray-50 relative overflow-hidden">
+  <section id="portfolio" class="py-20 bg-gray-900 relative overflow-hidden">
     <!-- Decorative Background Elements -->
     <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute top-20 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-xl"></div>
-      <div class="absolute bottom-20 right-10 w-48 h-48 bg-purple-500/10 rounded-full blur-xl"></div>
-      <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-indigo-500/10 rounded-full blur-2xl"></div>
+      <div class="absolute top-20 left-10 w-32 h-32 bg-gray-600/10 rounded-full blur-xl"></div>
+      <div class="absolute bottom-20 right-10 w-48 h-48 bg-gray-700/10 rounded-full blur-xl"></div>
+      <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-gray-500/10 rounded-full blur-2xl"></div>
     </div>
 
     <div class="container mx-auto px-6 relative z-10">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-          My <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Portfolio</span>
+        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">
+          My <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Portfolio</span>
         </h2>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
           A showcase of my recent projects, demonstrating my expertise in full-stack development, 
           UI/UX design, and modern web technologies.
         </p>
@@ -25,11 +25,11 @@
           v-for="category in categories" 
           :key="category"
           @click="activeFilter = category"
-          :class="[
+          :class=" [
             'px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105',
             activeFilter === category 
-              ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg' 
-              : 'bg-white text-gray-600 hover:bg-gray-100 shadow-md border border-gray-200'
+              ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg' 
+              : 'bg-gray-700 text-gray-300 hover:bg-gradient-to-r hover:from-blue-600/20 hover:to-cyan-600/20 hover:border-blue-500/50 shadow-md border border-gray-600'
           ]"
         >
           {{ category }}
@@ -41,7 +41,7 @@
         <div 
           v-for="project in filteredProjects" 
           :key="project.id"
-          class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+          class="group relative bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
         >
           <!-- Project Image -->
           <div class="relative overflow-hidden">
@@ -66,7 +66,7 @@
             </div>
             <!-- Category Badge -->
             <div class="absolute top-4 left-4">
-              <span class="px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-full">
+              <span class="px-3 py-1 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm font-semibold rounded-full">
                 {{ project.category }}
               </span>
             </div>
@@ -74,16 +74,16 @@
 
           <!-- Project Content -->
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300">
               {{ project.title }}
             </h3>
-            <p class="text-gray-600 mb-4 leading-relaxed">
+            <p class="text-gray-300 mb-4 leading-relaxed">
               {{ project.description }}
             </p>
 
             <!-- Project Stats -->
             <div class="flex items-center justify-between mb-6">
-              <div class="flex items-center space-x-4 text-sm text-gray-500">
+              <div class="flex items-center space-x-4 text-sm text-gray-400">
                 <div class="flex items-center space-x-1">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -106,7 +106,7 @@
                   :key="star"
                   :class=" [
                     'w-4 h-4',
-                    star <= project.rating ? 'text-yellow-400' : 'text-gray-300'
+                    star <= project.rating ? 'text-yellow-400' : 'text-gray-500'
                   ]"
                   fill="currentColor" 
                   viewBox="0 0 20 20"
@@ -121,14 +121,14 @@
               <a 
                 :href="project.liveUrl" 
                 target="_blank"
-                class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-md"
+                class="flex-1 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white text-center py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-md"
               >
                 Live Demo
               </a>
               <a 
                 :href="project.githubUrl" 
                 target="_blank"
-                class="flex-1 border-2 border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 text-center py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:bg-blue-50"
+                class="flex-1 border-2 border-blue-500/50 hover:border-blue-400 text-gray-300 hover:text-blue-300 text-center py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:bg-blue-500/10"
               >
                 Code
               </a>
@@ -136,7 +136,7 @@
           </div>
 
           <!-- Hover Effect Gradient -->
-          <div class="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-cyan-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"></div>
         </div>
       </div>
 
@@ -145,31 +145,31 @@
         <button 
           @click="loadMore"
           v-if="!showAll"
-          class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+          class="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
         >
           Load More Projects
         </button>
-        <p v-else class="text-gray-600 italic">
+        <p v-else class="text-gray-400 italic">
           You've seen all my amazing projects! 🎉
         </p>
       </div>
 
       <!-- Contact CTA -->
       <div class="mt-20 text-center">
-        <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 max-w-2xl mx-auto relative">
+        <div class="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-600 max-w-2xl mx-auto relative">
           <!-- Decorative elements -->
           <div class="absolute -top-3 -right-3 w-16 h-16 bg-blue-500/10 rounded-full blur-xl"></div>
-          <div class="absolute -bottom-3 -left-3 w-20 h-20 bg-purple-500/10 rounded-full blur-xl"></div>
+          <div class="absolute -bottom-3 -left-3 w-20 h-20 bg-cyan-500/10 rounded-full blur-xl"></div>
           
           <div class="relative">
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+            <h3 class="text-2xl font-bold text-white mb-4">
               Like what you see?
             </h3>
-            <p class="text-gray-600 mb-6 leading-relaxed">
+            <p class="text-gray-300 mb-6 leading-relaxed">
               I'm always excited to work on new projects and collaborate with amazing people. 
               Let's discuss how we can bring your ideas to life.
             </p>
-            <button class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button class="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
               Start a Project
             </button>
           </div>
@@ -190,11 +190,11 @@ export default {
       projects: [
         {
           id: 1,
-          title: 'E-commerce Dashboard',
+          title: 'Centralized Email Service for PT. Bank Pembangunan Daerah Bali',
           description: 'A comprehensive admin dashboard for managing online stores with real-time analytics and inventory management.',
           image: 'https://via.placeholder.com/400x300/3B82F6/FFFFFF?text=E-commerce+Dashboard',
           category: 'Web Development',
-          technologies: ['Laravel', 'Vue.js', 'MySQL'],
+          technologies: ['Laravel', 'RabbitMQ', 'Elasticsearch'],
           duration: '3 months',
           views: '1.2k',
           rating: 5,
