@@ -78,30 +78,6 @@
         </div>
       </div>
       
-      <!-- Newsletter Signup -->
-      <div class="border-t border-gray-800 mt-12 pt-8">
-        <div class="max-w-md mx-auto text-center">
-          <h4 class="text-xl font-semibold mb-2">Stay Updated</h4>
-          <p class="text-gray-400 mb-6">Get notified about new projects and articles.</p>
-          
-          <form @submit.prevent="subscribeNewsletter" class="flex">
-            <input 
-              type="email" 
-              v-model="email"
-              placeholder="Enter your email"
-              class="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
-              required
-            >
-            <button 
-              type="submit"
-              class="px-6 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 rounded-r-lg font-semibold transition-all duration-300"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </div>
-      
       <!-- Bottom Bar -->
       <div class="border-t border-gray-800 mt-12 pt-8">
         <div class="flex flex-col md:flex-row justify-between items-center">
@@ -169,13 +145,6 @@ export default {
     }
   },
   methods: {
-    subscribeNewsletter() {
-      if (this.email) {
-        // Handle newsletter subscription
-        alert(`Thank you for subscribing with email: ${this.email}`)
-        this.email = ''
-      }
-    },
     scrollToTop() {
       window.scrollTo({
         top: 0,

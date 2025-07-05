@@ -14,8 +14,7 @@
           My <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Portfolio</span>
         </h2>
         <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-          A showcase of my recent projects, demonstrating my expertise in full-stack development, 
-          UI/UX design, and modern web technologies.
+          A selection of projects reflecting my passion for backend development and seamless user experiences—demonstrating my growth as an aspiring full stack engineer.
         </p>
       </div>
 
@@ -37,10 +36,14 @@
       </div>
 
       <!-- Portfolio Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div 
+        :class="gridClasses"
+        class="gap-8"
+      >
         <div 
           v-for="project in filteredProjects" 
           :key="project.id"
+          :class="itemClasses"
           class="group relative bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
         >
           <!-- Project Image -->
@@ -191,81 +194,94 @@ export default {
         {
           id: 1,
           title: 'Centralized Email Service for PT. Bank Pembangunan Daerah Bali',
-          description: 'A comprehensive admin dashboard for managing online stores with real-time analytics and inventory management.',
-          image: 'https://via.placeholder.com/400x300/3B82F6/FFFFFF?text=E-commerce+Dashboard',
+          description: 'A RESTful email service and centralized dashboard for managing and monitoring emails; supporting both standard and Excel-based sending via RabbitMQ, with comprehensive logging to Elasticsearch.',
+          image: '/Login-SMES.png',
           category: 'Web Development',
           technologies: ['Laravel', 'RabbitMQ', 'Elasticsearch'],
           duration: '3 months',
           views: '1.2k',
           rating: 5,
           liveUrl: '#',
-          githubUrl: '#'
+          githubUrl: 'https://github.com/DikaSusanto/email-service-web-app'
         },
         {
           id: 2,
-          title: 'Mobile Banking App',
-          description: 'Secure and intuitive mobile banking application with biometric authentication and real-time transactions.',
-          image: 'https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=Banking+App',
+          title: 'Centralized Email Service for PT. Bank Pembangunan Daerah Bali',
+          description: 'A RESTful email service and centralized dashboard for managing and monitoring emails; supporting both standard and Excel-based sending via RabbitMQ, with comprehensive logging to Elasticsearch.',
+          image: '/Login-SMES.png',
           category: 'Mobile Apps',
-          technologies: ['React Native', 'Node.js', 'MongoDB'],
-          duration: '4 months',
-          views: '980',
+          technologies: ['Laravel', 'RabbitMQ', 'Elasticsearch'],
+          duration: '3 months',
+          views: '1.2k',
           rating: 5,
           liveUrl: '#',
-          githubUrl: '#'
+          githubUrl: 'https://github.com/DikaSusanto/email-service-web-app'
         },
         {
           id: 3,
-          title: 'Brand Identity Design',
-          description: 'Complete brand identity design including logo, color palette, and design system for a tech startup.',
-          image: 'https://via.placeholder.com/400x300/06B6D4/FFFFFF?text=Brand+Identity',
-          category: 'UI/UX Design',
-          technologies: ['Figma', 'Sketch', 'Adobe CC'],
-          duration: '2 months',
-          views: '750',
-          rating: 4,
+          title: 'Centralized Email Service for PT. Bank Pembangunan Daerah Bali',
+          description: 'A RESTful email service and centralized dashboard for managing and monitoring emails; supporting both standard and Excel-based sending via RabbitMQ, with comprehensive logging to Elasticsearch.',
+          image: '/Login-SMES.png',
+          category: 'Mobile Apps',
+          technologies: ['Laravel', 'RabbitMQ', 'Elasticsearch'],
+          duration: '3 months',
+          views: '1.2k',
+          rating: 5,
           liveUrl: '#',
-          githubUrl: '#'
+          githubUrl: 'https://github.com/DikaSusanto/email-service-web-app'
         },
         {
           id: 4,
-          title: 'Restaurant Management System',
-          description: 'Full-featured restaurant management system with POS, inventory tracking, and customer management.',
-          image: 'https://via.placeholder.com/400x300/10B981/FFFFFF?text=Restaurant+System',
+          title: 'Centralized Email Service for PT. Bank Pembangunan Daerah Bali',
+          description: 'A RESTful email service and centralized dashboard for managing and monitoring emails; supporting both standard and Excel-based sending via RabbitMQ, with comprehensive logging to Elasticsearch.',
+          image: '/Login-SMES.png',
           category: 'Web Development',
-          technologies: ['Laravel', 'React', 'PostgreSQL'],
-          duration: '5 months',
-          views: '1.5k',
+          technologies: ['Laravel', 'RabbitMQ', 'Elasticsearch'],
+          duration: '3 months',
+          views: '1.2k',
           rating: 5,
           liveUrl: '#',
-          githubUrl: '#'
+          githubUrl: 'https://github.com/DikaSusanto/email-service-web-app'
         },
         {
           id: 5,
-          title: 'Fashion E-commerce',
-          description: 'Modern e-commerce platform for fashion brands with advanced filtering and recommendation engine.',
-          image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=Fashion+Store',
-          category: 'E-commerce',
-          technologies: ['Shopify', 'React', 'Stripe'],
+          title: 'Centralized Email Service for PT. Bank Pembangunan Daerah Bali',
+          description: 'A RESTful email service and centralized dashboard for managing and monitoring emails; supporting both standard and Excel-based sending via RabbitMQ, with comprehensive logging to Elasticsearch.',
+          image: '/Login-SMES.png',
+          category: 'Web Development',
+          technologies: ['Laravel', 'RabbitMQ', 'Elasticsearch'],
           duration: '3 months',
-          views: '2.1k',
+          views: '1.2k',
           rating: 5,
           liveUrl: '#',
-          githubUrl: '#'
+          githubUrl: 'https://github.com/DikaSusanto/email-service-web-app'
         },
         {
           id: 6,
-          title: 'Fitness Tracking App',
-          description: 'Comprehensive fitness tracking mobile app with workout plans, nutrition tracking, and progress analytics.',
-          image: 'https://via.placeholder.com/400x300/EF4444/FFFFFF?text=Fitness+App',
-          category: 'Mobile Apps',
-          technologies: ['Flutter', 'Firebase', 'ML Kit'],
-          duration: '4 months',
-          views: '890',
-          rating: 4,
+          title: 'Centralized Email Service for PT. Bank Pembangunan Daerah Bali',
+          description: 'A RESTful email service and centralized dashboard for managing and monitoring emails; supporting both standard and Excel-based sending via RabbitMQ, with comprehensive logging to Elasticsearch.',
+          image: '/Login-SMES.png',
+          category: 'Web Development',
+          technologies: ['Laravel', 'RabbitMQ', 'Elasticsearch'],
+          duration: '3 months',
+          views: '1.2k',
+          rating: 5,
           liveUrl: '#',
-          githubUrl: '#'
-        }
+          githubUrl: 'https://github.com/DikaSusanto/email-service-web-app'
+        },        
+        {
+          id: 7,
+          title: 'Centralized Email Service for PT. Bank Pembangunan Daerah Bali',
+          description: 'A RESTful email service and centralized dashboard for managing and monitoring emails; supporting both standard and Excel-based sending via RabbitMQ, with comprehensive logging to Elasticsearch.',
+          image: '/Login-SMES.png',
+          category: 'Web Development',
+          technologies: ['Laravel', 'RabbitMQ', 'Elasticsearch'],
+          duration: '3 months',
+          views: '1.2k',
+          rating: 5,
+          liveUrl: '#',
+          githubUrl: 'https://github.com/DikaSusanto/email-service-web-app'
+        },
       ]
     }
   },
@@ -276,6 +292,34 @@ export default {
         : this.projects.filter(project => project.category === this.activeFilter)
       
       return this.showAll ? filtered : filtered.slice(0, 6)
+    },
+    
+    projectCount() {
+      return this.filteredProjects.length
+    },
+    
+    gridClasses() {
+      const count = this.projectCount
+      
+      if (count === 1) {
+        return 'flex justify-center'
+      } else if (count === 2) {
+        return 'grid grid-cols-1 md:grid-cols-2 justify-center max-w-4xl mx-auto'
+      } else {
+        return 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+      }
+    },
+    
+    itemClasses() {
+      const count = this.projectCount
+      
+      if (count === 1) {
+        return 'w-full max-w-md'
+      } else if (count === 2) {
+        return 'w-full'
+      } else {
+        return 'w-full'
+      }
     }
   },
   methods: {
