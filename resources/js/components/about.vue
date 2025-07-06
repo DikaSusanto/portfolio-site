@@ -62,7 +62,7 @@
           </div>
 
           <!-- CTA Button  -->
-          <a href="/CV_Dika Putra Susanto_2025.pdf" download
+          <a href="cv/CV_Dika Putra Susanto_2025.pdf" download
             class="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-block">
             Download Resume
           </a>
